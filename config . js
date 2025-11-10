@@ -1,0 +1,16 @@
+const EXPERTBET_CONFIG = {
+    API: {
+        FOOTBALL_DATA: {
+            BASE_URL: 'https://api.football-data.org/v4',
+            STORAGE_KEY: 'expertbet_api_key'
+        }
+    },
+    LEAGUES: {
+        'PL': 'Premier League',
+        'PD': 'La Liga',
+        'SA': 'Serie A',
+        'FL1': 'Ligue 1',
+        'BL1': 'Bundesliga',
+        'CL': 'Champions League'
+    }
+};
