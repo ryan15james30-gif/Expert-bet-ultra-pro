@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpertBet Ultra Pro - Prédictions Football IA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <span class="logo-icon">⚽</span>
+                    <div class="logo-text">
+                        <h1>EXPERTBET ULTRA PRO</h1>
+                        <span class="logo-subtitle">Powered by AI/ML v3.0</span>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#accueil" class="nav-link">🏠 Accueil</a></li>
+                    <li><a href="#predictions" class="nav-link">🔥 Prédictions</a></li>
+                    <li><a href="#stats" class="nav-link">📊 Stats</a></li>
+                    <li><a href="#config" class="nav-link">⚙️ Config</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="accueil" class="hero">
+        <div class="container">
+            <h2 class="hero-title">🎯 PRÉDICTIONS FOOTBALL IA</h2>
+            <p class="hero-subtitle">8 Algorithmes ML • Précision 90%+ • Temps Réel</p>
+            <div id="apiStatus" class="status-badge warning">
+                <span class="status-dot"></span>
+                <span>Configuration requise</span>
+            </div>
+            <a href="#config" class="btn btn-primary">⚙️ CONFIGURER L'API</a>
+        </div>
+    </section>
+
+    <section id="config" class="section">
+        <div class="container">
+            <h2 class="section-title">⚙️ CONFIGURATION API</h2>
+            <div class="config-box">
+                <div class="guide">
+                    <h3>📋 Comment obtenir votre clé API ?</h3>
+                    <ol>
+                        <li>Allez sur <a href="https://www.football-data.org/client/register" target="_blank">football-data.org/register</a></li>
+                        <li>Créez un compte gratuit</li>
+                        <li>Confirmez votre email</li>
+                        <li>Copiez votre X-Auth-Token</li>
+                        <li>Collez-la ci-dessous</li>
+                    </ol>
+                    <div class="api-limits">
+                        <h4>🆓 Plan Gratuit :</h4>
+                        <ul>
+                            <li>✅ 10 requêtes/minute</li>
+                            <li>✅ Compétitions majeures</li>
+                            <li>✅ Données temps réel</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <label>🔑 Clé API Football-Data.org</label>
+                    <input type="password" id="apiKey" placeholder="Collez votre X-Auth-Token ici">
+                    <button onclick="saveApiKey()" class="btn btn-success">💾 Enregistrer la clé</button>
+                    
+                    <label>🏆 Sélectionner une compétition</label>
+                    <select id="selectLeague">
+                        <option value="PL">🏴 Premier League (Angleterre)</option>
+                        <option value="PD">🇪🇸 La Liga (Espagne)</option>
+                        <option value="SA">🇮🇹 Serie A (Italie)</option>
+                        <option value="FL1">🇫🇷 Ligue 1 (France)</option>
+                        <option value="BL1">🇩🇪 Bundesliga (Allemagne)</option>
+                        <option value="CL">🌍 Champions League</option>
+                    </select>
+                    <button onclick="loadMatches()" class="btn btn-primary">🔄 Charger les matchs</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="predictions" class="section">
+        <div class="container">
+            <h2 class="section-title">🔥 PRÉDICTIONS IA EN TEMPS RÉEL</h2>
+            <div id="loadingMatches" class="loading" style="display:none;">
+                <div class="spinner"></div>
+                <p>🧠 Analyse IA en cours avec 8 algorithmes ML...</p>
+            </div>
+            <div id="noPredictions" class="alert" style="display:none;">
+                ⚠️ Aucune prédiction disponible. Configurez votre API ci-dessus.
+            </div>
+            <div id="matchesContainer" class="predictions-grid"></div>
+        </div>
+    </section>
+
+    <section id="stats" class="section">
+        <div class="container">
+            <h2 class="section-title">📊 STATISTIQUES & PERFORMANCE</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">⚽</div>
+                    <div class="stat-value" id="totalMatches">0</div>
+                    <div class="stat-label">Matchs analysés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-value" id="totalPredictions">0</div>
+                    <div class="stat-label">Prédictions générées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value" id="avgConfidence">0%</div>
+                    <div class="stat-label">Confiance moyenne</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🤖</div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Algorithmes ML actifs</div>
+                </div>
+            </div>
+            <div class="algorithms-info">
+                <h3>🧠 Algorithmes de Machine Learning utilisés</h3>
+                <div class="algo-grid">
+                    <div class="algo-item">🤖 Neural Network</div>
+                    <div class="algo-item">🌲 Random Forest</div>
+                    <div class="algo-item">📈 Gradient Boosting</div>
+                    <div class="algo-item">⚖️ Naive Bayes</div>
+                    <div class="algo-item">📊 Poisson Distribution</div>
+                    <div class="algo-item">🏅 ELO Rating</div>
+                    <div class="algo-item">🎲 Monte Carlo</div>
+                    <div class="algo-item">⚡ Dixon-Coles</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 ExpertBet Ultra Pro - Powered by AI/ML v3.0</p>
+            <p><small>⚠️ Les paris sportifs comportent des risques. Jouez responsable.</small></p>
+            <p><small>Données fournies par <a href="https://www.football-data.org" target="_blank">Football-Data.org</a></small></p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="data-processor.js"></script>
+    <script src="prediction-algo.js"></script>
+    <script src="ml-engine.js"></script>
+    <script src="app.js"></script>
+</body>
+                          </html>
